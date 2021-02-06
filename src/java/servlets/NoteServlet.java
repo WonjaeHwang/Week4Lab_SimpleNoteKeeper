@@ -5,18 +5,16 @@
  */
 package servlets;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
+import java.io.*;
+import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Note;
+
+
+
+
 
 /**
  *
@@ -56,9 +54,9 @@ public class NoteServlet extends HttpServlet {
             request.setAttribute("content", content);
             
             Note note = new Note (title, content);
-            request.setAttribute("note", note);
+            request.setAttribute("Note", note);
             
-            getServeletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp").forward(request, response);
         }
             
 
@@ -83,7 +81,7 @@ public class NoteServlet extends HttpServlet {
         String editContent = request.getParameter("editContent");
         
         Note note = new Note (editTitle, editContent);
-        request.setAttribute("note", note);
+        request.setAttribute("Note", note);
         
         pw.println(note.getTitle());
         pw.println(note.getContent());
